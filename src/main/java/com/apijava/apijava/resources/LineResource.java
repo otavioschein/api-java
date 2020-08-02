@@ -66,9 +66,8 @@ public class LineResource {
     }
 
     @PutMapping(value = "/atualizar")
-    public ResponseEntity update(@RequestParam(value = "id", defaultValue = "") Integer id) {
-        Line line = lineService.findById(id);
-        lineService.update(line);
+    public ResponseEntity update(@RequestParam(value = "id", defaultValue = "") Integer id, @RequestBody Line newLine) {
+        lineService.update(newLine);
         return ResponseEntity.noContent().build();
     }
 

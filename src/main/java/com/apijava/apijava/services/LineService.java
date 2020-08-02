@@ -68,15 +68,12 @@ public class LineService {
         lineRepository.deleteById(id);
     }
 
-    public Line update(Line line) {
-        Line newLine = findById(line.getId());
-        updateData(newLine, line);
-        return lineRepository.save(newLine);
+    public Line update(Line newLine) {
+        Line existsLine = findById(newLine.getId());
+        existsLine.setCodigo(newLine.getCodigo());
+        existsLine.setNome(newLine.getNome());
+        return lineRepository.save(existsLine);
     }
 
-    public void updateData(Line newLine, Line obj) {
-        newLine.setId(obj.getId());
-        newLine.setCodigo(obj.getCodigo());
-        newLine.setNome(obj.getNome());
-    }
+
 }
