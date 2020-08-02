@@ -4,17 +4,17 @@ import com.apijava.apijava.model.Line;
 import com.apijava.apijava.repository.LineRepository;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
+import java.net.URI;
 import java.net.URL;
-import java.net.http.HttpResponse;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class LineService {
@@ -25,11 +25,9 @@ public class LineService {
     public List<Line> findFromApi() throws IOException {
         ObjectMapper mapper = new ObjectMapper();
         List<Line> list = mapper.readValue(new URL("http://www.poatransporte.com.br/php/facades/process.php?a=nc&p=%&t=o"), new TypeReference<List<Line>>(){});
-
+        lineRepository.insert(list);
         return list;
     }
-
-    public
 
     public List<Line> findAll() {
         return lineRepository.findAll();
@@ -47,5 +45,38 @@ public class LineService {
     public List<Line> findByName(String name) {
         name = Url.decodeParam(name);
         return lineRepository.findByName(name);
+    }
+
+    public Line findById(Integer id) {
+        Optional<Line> obj = lineRepository.findById(id);
+        return obj.orElseThrow();
+    }
+
+    public Line register(Line line) {
+        Optional<Line> exists = lineRepository.findById(line.getId());
+        if (exists.isEmpty()) {
+            lineRepository.insert(line);
+        } else if (!exists.isEmpty() && line.equals(exists)) {
+            update(line);
+//            System.out.println("Updated");
+        }
+        return line;
+    }
+
+    public void delete(Integer id) {
+        Optional<Line> deleteLine = lineRepository.findById(id);
+        lineRepository.deleteById(id);
+    }
+
+    public Line update(Line line) {
+        Line newLine = findById(line.getId());
+        updateData(newLine, line);
+        return lineRepository.save(newLine);
+    }
+
+    public void updateData(Line newLine, Line obj) {
+        newLine.setId(obj.getId());
+        newLine.setCodigo(obj.getCodigo());
+        newLine.setNome(obj.getNome());
     }
 }

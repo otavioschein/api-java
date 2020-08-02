@@ -2,7 +2,9 @@ package com.apijava.apijava.model;
 
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document(collection = "linha")
+import java.util.Objects;
+
+@Document(collection = "example")
 public class Line {
 
     private Integer  id;
@@ -29,5 +31,18 @@ public class Line {
 
     public void setNome(String nome) {this.nome = nome;}
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Line line = (Line) o;
+        return id.equals(line.id) &&
+                codigo.equals(line.codigo) &&
+                nome.equals(line.nome);
+    }
 
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, codigo, nome);
+    }
 }
