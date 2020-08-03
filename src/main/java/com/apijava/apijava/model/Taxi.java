@@ -11,6 +11,12 @@ public class Taxi {
 
     public Taxi() {}
 
+    public Taxi(String nome, Double latitude, Double longitude) {
+        this.nome = nome;
+        this.latitude = latitude;
+        this.longitude = longitude;
+    }
+
     public Taxi(String nome, Double latitude, Double longitude, Date creationTime) {
         this.nome = nome;
         this.latitude = latitude;
@@ -48,5 +54,10 @@ public class Taxi {
 
     public void setCreationTime(Date creationTime) {
         this.creationTime = creationTime;
+    }
+
+    @Override
+    public String toString() {
+        return nome + "#" + latitude + "#" + longitude + "#" + creationTime + "\n";
     }
 }
