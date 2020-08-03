@@ -58,6 +58,6 @@ public class Taxi {
 
     @Override
     public String toString() {
-        return nome + "#" + latitude + "#" + longitude + "#" + creationTime + "\n";
+        return nome + "#" + latitude + "#" + longitude + "#" + creationTime ;
     }
 }

@@ -33,14 +33,27 @@ public class TaxiService {
         }
     }
 
-    public Taxi find(String nome) throws IOException {
-        File file = new File("taxi.txt");
-        if (file.createNewFile()) {
-            System.out.println("File doesn't exist!");
-            file.delete();
-        } else {
-            
+    public String listContent() {
+        try {
+            File file = new File("taxi.txt");
+            String data = null;
+            if (file.createNewFile()) {
+                data = "File doesn't exist!";
+                file.delete();
+            } else {
+                System.out.println("File exists!");
+                Scanner scanner = new Scanner(file);
+                while (scanner.hasNextLine()) {
+                    data = scanner.nextLine();
+                    System.out.println(data);
+                }
+                scanner.close();
+            }
+            return data;
+        } catch (IOException e) {
+            e.printStackTrace();
         }
+        return null;
     }
 
 

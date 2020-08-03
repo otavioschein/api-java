@@ -22,9 +22,9 @@ public class TaxiResource {
         return ResponseEntity.noContent().build();
     }
 
-    @GetMapping(value = "/encontrar")
-    public ResponseEntity find(@RequestParam(value = "nome", defaultValue = "") String nome) {
-        Taxi foundTaxi = taxiService.find(nome);
+    @GetMapping(value = "/listar")
+    public ResponseEntity listContent() {
+        String foundTaxi = taxiService.listContent();
         return ResponseEntity.ok().body(foundTaxi);
     }
 
