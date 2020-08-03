@@ -36,11 +36,6 @@ public class LineResource {
         return ResponseEntity.ok().body(list);
     }
 
-//    @GetMapping(value = "/itinerarios")
-//    public ResponseEntity findItineraries(@RequestParam(value = "id", defaultValue = "") Integer id){
-//
-//    }
-
     @GetMapping(value = "/nome")
     public ResponseEntity<List<Line>> findByName(@RequestParam(value = "text", defaultValue = "") String name) {
         List<Line> listName = lineService.findByName(name);

@@ -1,5 +1,7 @@
 package com.apijava.apijava.model;
 
+import com.fasterxml.jackson.databind.JsonNode;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.Objects;
@@ -11,12 +13,22 @@ public class Line {
     private String codigo;
     private String nome;
 
+    @DBRef(lazy = true)
+    private JsonNode itinerarios;
+
     public Line() {}
 
     public Line(Integer id, String codigo, String nome) {
         this.id = id;
         this.codigo = codigo;
         this.nome = nome;
+    }
+
+    public Line(Integer id, String codigo, String nome, JsonNode itinerarios) {
+        this.id = id;
+        this.codigo = codigo;
+        this.nome = nome;
+        this.itinerarios = itinerarios;
     }
 
     public Integer getId() {return id;}
@@ -30,6 +42,12 @@ public class Line {
     public String getNome() {return nome;}
 
     public void setNome(String nome) {this.nome = nome;}
+
+    public JsonNode getItinerarios() {return itinerarios;}
+
+    public void setItinerarios(JsonNode itinerarios) {
+        this.itinerarios = itinerarios;
+    }
 
     @Override
     public boolean equals(Object o) {

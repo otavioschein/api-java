@@ -36,7 +36,7 @@ public class LineService {
     public List<String> findAllNames() {
         List<String> listNames = new ArrayList<>();
         List<Line> list = findAll();
-        for (Line line: list) {
+        for (Line line : list) {
             listNames.add(line.getNome());
         }
         return listNames;
