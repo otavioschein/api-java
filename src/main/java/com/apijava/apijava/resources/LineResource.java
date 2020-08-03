@@ -3,16 +3,13 @@ package com.apijava.apijava.resources;
 import com.apijava.apijava.model.Line;
 import com.apijava.apijava.repository.LineRepository;
 import com.apijava.apijava.services.LineService;
-import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.io.IOException;
 import java.net.URI;
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping(value="/linhas")

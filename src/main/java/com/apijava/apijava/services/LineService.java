@@ -4,13 +4,10 @@ import com.apijava.apijava.model.Line;
 import com.apijava.apijava.repository.LineRepository;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
-import java.net.URI;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -58,7 +55,6 @@ public class LineService {
             lineRepository.insert(line);
         } else if (!exists.isEmpty() && line.equals(exists)) {
             update(line);
-//            System.out.println("Updated");
         }
         return line;
     }

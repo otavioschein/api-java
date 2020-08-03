@@ -1,0 +1,13 @@
+services:
+  mymongodb:
+    image: mongo:3.0.2
+    container_name: "mymongodb"
+    ports:
+      - 27017:27017
+apijava-mongo:
+  image: apijava-mongo:1.0
+  container_name: apijava-mongo
+  ports:
+    - 8080:8080
+  links:
+    - mymongodb

@@ -1,7 +1,6 @@
 package com.apijava.apijava.services;
 
 import com.apijava.apijava.model.Taxi;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.io.*;

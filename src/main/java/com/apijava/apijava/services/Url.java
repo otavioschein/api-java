@@ -1,7 +1,5 @@
 package com.apijava.apijava.services;
 
-import org.springframework.web.util.UriComponentsBuilder;
-
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 
